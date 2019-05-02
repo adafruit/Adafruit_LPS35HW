@@ -68,6 +68,7 @@ boolean Adafruit_LPS35HW::begin(uint8_t i2c_address, TwoWire *theWire) {
   Config2 = new Adafruit_I2CRegister(i2c_dev, LPS35HW_CTRL_REG2, 1);
   Config3 = new Adafruit_I2CRegister(i2c_dev, LPS35HW_CTRL_REG3, 1);
   InterruptCfg = new Adafruit_I2CRegister(i2c_dev, LPS35HW_INTERRUPT_CFG, 1);
+  InterruptStatus = new Adafruit_I2CRegister(i2c_dev, LPS35HW_INT_SOURCE, 1);
 
   reset();
   // delay(2); // delay 2ms to give time for first measurement to finish
@@ -89,6 +90,11 @@ void Adafruit_LPS35HW::reset(void){
 
   // we may also want to clear other registers not cleared by the soft reset
   setDataRate(LPS35HW_RATE_10_hz); // default in continuous at 10 hz
+  // setup block reads
+  Adafruit_I2CRegisterBits block_reads =
+    Adafruit_I2CRegisterBits(Config1, 1, 1);
+  block_reads.write(0x1);
+
 }
 /**************************************************************************/
 /*!
@@ -153,28 +159,59 @@ void Adafruit_LPS35HW::resetPressure(void) {
     Adafruit_I2CRegisterBits(InterruptCfg, 1, 4);
   pressure_reset.write(1);
 }
+
 // /**************************************************************************/
 // /*!
 //     @brief Reads and scales the current value of the Power register.
 //     @return The current Power calculation in mW
 // */
-// /**************************************************************************/
-// float Adafruit_LPS35HW::readPower(void) {
-//   Adafruit_I2CRegister power =
-//     Adafruit_I2CRegister(i2c_dev, LPS35HW_REG_POWER, 2, MSBFIRST);
-//   return power.read() * 10;
-// }
-// /**************************************************************************/
-// /*!
-//     @brief Returns the current measurement mode
-//     @return The current mode
-// */
-// /**************************************************************************/
-// LPS35HW_MeasurementMode Adafruit_LPS35HW::getMode(void) {
-//   Adafruit_I2CRegisterBits mode =
-//     Adafruit_I2CRegisterBits(Config, 3, 0);
-//   return mode.read();
-// }
+void Adafruit_LPS35HW::setThresholdPressure(float threshold_pressure) {
+  Adafruit_I2CRegister threshold = Adafruit_I2CRegister(i2c_dev, LPS35HW_THS_P_L, 2);
+  threshold.write(threshold_pressure);
+}
+
+void Adafruit_LPS35HW::enableHighThreshold(void) {
+  Adafruit_I2CRegisterBits high_thresh = Adafruit_I2CRegisterBits(InterruptCfg, 1, 0);
+  high_thresh.write(0x1); // interrupt on high threshold
+  Adafruit_I2CRegisterBits high_int_pin = Adafruit_I2CRegisterBits(Config3, 1, 0);
+  high_int_pin.write(0x1);
+}
+
+void Adafruit_LPS35HW::enableLowThreshold(void) {
+  Adafruit_I2CRegisterBits low_thresh = Adafruit_I2CRegisterBits(InterruptCfg, 1, 1);
+  low_thresh.write(0x1);
+  Adafruit_I2CRegisterBits low_int_pin = Adafruit_I2CRegisterBits(Config3, 1, 1);
+  low_int_pin.write(0x1);
+}
+
+void Adafruit_LPS35HW::enableInterrupts(bool active_low){
+  if (active_low){
+    Adafruit_I2CRegisterBits pin_mode = Adafruit_I2CRegisterBits(Config3, 2, 6);
+    pin_mode.write(0x3);
+  }
+  Adafruit_I2CRegisterBits latch_enabled = Adafruit_I2CRegisterBits(InterruptCfg, 2, 2);
+  latch_enabled.write(0x3);
+}
+void Adafruit_LPS35HW::disableInterrupts(void){
+
+}
+void Adafruit_LPS35HW::enableLowPass(bool extra_low_bandwidth){
+  Adafruit_I2CRegisterBits filter_config =
+    Adafruit_I2CRegisterBits(Config1, 2, 2);
+  // this is assuming bool true is 1
+  filter_config.write(0x2 | extra_low_bandwidth);
+}
+
+
+bool Adafruit_LPS35HW::highThresholdExceeded(void) {
+  Adafruit_I2CRegisterBits high_threshold = Adafruit_I2CRegisterBits(InterruptStatus, 1, 0);
+  return (high_threshold.read() == 1);
+}
+
+bool Adafruit_LPS35HW::lowThresholdExceeded(void) {
+  Adafruit_I2CRegisterBits low_threshold = Adafruit_I2CRegisterBits(InterruptStatus, 1, 1);
+  return (low_threshold.read() == 1);
+}
 /**************************************************************************/
 /*!
     @brief Sets a new measurement rate

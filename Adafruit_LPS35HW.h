@@ -74,22 +74,25 @@ public:
   void reset(void);
   float readTemperature(void);
   float readPressure(void);
-  // float readPower(void);
-  // void setDataRate(LPS35HW_DataRate data_rate);
-  // LPS35HW_DataRate getDataRate(void);
   void setDataRate(LPS35HW_DataRate new_rate);
   void takeMeasurement(void);
   void zeroPressure(void);
   void resetPressure(void);
-  // void setPressureThreshold(float pressure_threshold);
-  // void enableHighThreshold(void);
-  // bool highThresholdExceeded(void);
+  void setThresholdPressure(float threshold_pressure);
+  void enableHighThreshold(void);
+  void enableLowThreshold(void);
+  bool highThresholdExceeded(void);
+  bool lowThresholdExceeded(void);
+  void enableInterrupts(bool active_low);
+  void disableInterrupts(void);
+  void enableLowPass(bool extra_low_bandwidth=0);
 
   Adafruit_I2CRegister *Config1,  ///< BusIO Register for Config
                        *Config2,  ///< BusIO Register for Config
                        *Config3, ///< BusIO Register for MaskEnable
-                       *InterruptCfg; ///< BusIO Register for AlertLimit
-                           
+                       *InterruptCfg, ///< BusIO Register for MaskEnable
+                       *InterruptStatus; ///< BusIO Register for interrupt status
+
 private:
   Adafruit_I2CDevice *i2c_dev;
 };
