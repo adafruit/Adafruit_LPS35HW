@@ -199,7 +199,7 @@ void Adafruit_LPS35HW::enableLowThreshold(void) {
     @brief Enables pressure threshold interrupts. High and low thresholds
           need to be enabled individually with `enableLowThreshold` and
           `enableHighThreshold`.
-    @param active_low
+    @param open_drain
           Set to `true` to have the INT pin be open drain when active.
 */
 /**************************************************************************/
