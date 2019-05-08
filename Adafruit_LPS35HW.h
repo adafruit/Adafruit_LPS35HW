@@ -50,17 +50,17 @@
 /**
  * @brief Data rate options.
  *
- * Allowed values for setDataRate.
+ * Allowed values for `setDataRate`.
  */
 typedef enum _data_rate {
-  LPS35HW_RATE_ONE_SHOT, /** < ONE_SHOT: Put the sensor in a low power shutdown mode,
-                               that will only take a measurement when takeMeasurement
+  LPS35HW_RATE_ONE_SHOT, /**< ONE_SHOT: Put the sensor in a low power shutdown mode
+                              that will only take a measurement when `takeMeasurement`
                                is called **/
-  LPS35HW_RATE_1_hz, /** < 1hz  **/
-  LPS35HW_RATE_10_hz, /** < 10 hz  **/
-  LPS35HW_RATE_25_hz, /** < 25 hz  **/
-  LPS35HW_RATE_50_hz, /** < 50 hz  **/
-  LPS35HW_RATE_75_hz, /** 75 hz  **/
+  LPS35HW_RATE_1_HZ, /** 1 hz  **/
+  LPS35HW_RATE_10_HZ, /** 10 hz  **/
+  LPS35HW_RATE_25_HZ, /** 25 hz  **/
+  LPS35HW_RATE_50_HZ, /** 50 hz  **/
+  LPS35HW_RATE_75_HZ, /** 75 hz  **/
 } LPS35HW_DataRate;
 
 /*!
@@ -70,7 +70,7 @@ typedef enum _data_rate {
 class Adafruit_LPS35HW {
 public:
   Adafruit_LPS35HW();
-  boolean begin(uint8_t i2c_addr=LPS35HW_I2CADDR_DEFAULT, TwoWire *theWire = &Wire);
+  boolean begin(uint8_t i2c_addr=LPS35HW_I2CADDR_DEFAULT, TwoWire *wire = &Wire);
   void reset(void);
   float readTemperature(void);
   float readPressure(void);
@@ -83,15 +83,15 @@ public:
   void enableLowThreshold(void);
   bool highThresholdExceeded(void);
   bool lowThresholdExceeded(void);
-  void enableInterrupts(bool active_low);
+  void enableInterrupts(bool open_drain=false);
   void disableInterrupts(void);
-  void enableLowPass(bool extra_low_bandwidth=0);
+  void enableLowPass(bool extra_low_bandwidth=false);
 
-  Adafruit_I2CRegister *Config1,  ///< BusIO Register for Config
-                       *Config2,  ///< BusIO Register for Config
-                       *Config3, ///< BusIO Register for MaskEnable
-                       *InterruptCfg, ///< BusIO Register for MaskEnable
-                       *InterruptStatus; ///< BusIO Register for interrupt status
+  Adafruit_I2CRegister *Config1,  ///< BusIO Register for CONFIG_1
+                       *Config2,  ///< BusIO Register for CONFIG_2
+                       *Config3, ///< BusIO Register for CONFIG_3
+                       *InterruptCfg, ///< BusIO Register for INTERRUPT_CFG
+                       *InterruptStatus; ///< BusIO Register for INTERRUPT_STATUS
 
 private:
   Adafruit_I2CDevice *i2c_dev;
