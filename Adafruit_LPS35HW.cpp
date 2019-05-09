@@ -50,7 +50,7 @@ Adafruit_LPS35HW::Adafruit_LPS35HW(void) {}
  *    @return True if initialization was successful, otherwise false.
  */
 boolean Adafruit_LPS35HW::begin(uint8_t i2c_address, TwoWire *wire) {
-  i2c_dev = new Adafruit_I2CDevice(i2c_address);
+  i2c_dev = new Adafruit_I2CDevice(i2c_address, wire);
 
   if (!i2c_dev->begin()) {
     return false;
