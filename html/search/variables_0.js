@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['config1',['Config1',['../class_adafruit___l_p_s35_h_w.html#a7a5d25c822761339c3a8e05dfc623897',1,'Adafruit_LPS35HW']]],
-  ['config2',['Config2',['../class_adafruit___l_p_s35_h_w.html#a41443cbb7657f880c214fab8bc1302ea',1,'Adafruit_LPS35HW']]],
-  ['config3',['Config3',['../class_adafruit___l_p_s35_h_w.html#ae8ef6b5128d84c8b8ba1060e7fcfa74f',1,'Adafruit_LPS35HW']]]
+  ['config1',['Config1',['../class_adafruit___l_p_s35_h_w.html#a250810fec93a649095c0598e366b336d',1,'Adafruit_LPS35HW']]],
+  ['config2',['Config2',['../class_adafruit___l_p_s35_h_w.html#a58c2f94038eb2c10a800947b24c0b4cc',1,'Adafruit_LPS35HW']]],
+  ['config3',['Config3',['../class_adafruit___l_p_s35_h_w.html#a6ac09277fc774bb066d98b4d809e8a3b',1,'Adafruit_LPS35HW']]]
 ];

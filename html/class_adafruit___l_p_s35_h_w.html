@@ -78,9 +78,12 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#af87485fa23c6171aee27d6c8aee0e7ef">Adafruit_LPS35HW</a> ()</td></tr>
 <tr class="memdesc:af87485fa23c6171aee27d6c8aee0e7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new LPS35HW class. <br /></td></tr>
 <tr class="separator:af87485fa23c6171aee27d6c8aee0e7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d0de5d7579cf0c08615e8d1a0455f09"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a5d0de5d7579cf0c08615e8d1a0455f09">begin</a> (uint8_t i2c_addr=<a class="el" href="_adafruit___l_p_s35_h_w_8h.html#ab123a68cb902f3f4440414465fc68772">LPS35HW_I2CADDR_DEFAULT</a>, TwoWire *wire=&amp;Wire)</td></tr>
-<tr class="memdesc:a5d0de5d7579cf0c08615e8d1a0455f09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the hardware and initializes I2C.  <a href="#a5d0de5d7579cf0c08615e8d1a0455f09">More...</a><br /></td></tr>
-<tr class="separator:a5d0de5d7579cf0c08615e8d1a0455f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4413f448333fb9bf0163f04c13b34230"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a4413f448333fb9bf0163f04c13b34230">begin_I2C</a> (uint8_t i2c_addr=<a class="el" href="_adafruit___l_p_s35_h_w_8h.html#ab123a68cb902f3f4440414465fc68772">LPS35HW_I2CADDR_DEFAULT</a>, TwoWire *wire=&amp;Wire)</td></tr>
+<tr class="memdesc:a4413f448333fb9bf0163f04c13b34230"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the hardware and initializes I2C.  <a href="#a4413f448333fb9bf0163f04c13b34230">More...</a><br /></td></tr>
+<tr class="separator:a4413f448333fb9bf0163f04c13b34230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ff4857bf4f57d5347bb7f27144a33d"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#ae1ff4857bf4f57d5347bb7f27144a33d">begin_SPI</a> (uint8_t cs_pin, SPIClass *theSPI=&amp;SPI)</td></tr>
+<tr class="memdesc:ae1ff4857bf4f57d5347bb7f27144a33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the hardware and initializes SPI.  <a href="#ae1ff4857bf4f57d5347bb7f27144a33d">More...</a><br /></td></tr>
+<tr class="separator:ae1ff4857bf4f57d5347bb7f27144a33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c6c9cf9dd299a32fede788630b836b7"><td class="memItemLeft" align="right" valign="top"><a id="a2c6c9cf9dd299a32fede788630b836b7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a2c6c9cf9dd299a32fede788630b836b7">reset</a> (void)</td></tr>
 <tr class="memdesc:a2c6c9cf9dd299a32fede788630b836b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the hardware. All configuration registers are set to default values, the same as a power-on reset. <br /></td></tr>
@@ -136,38 +139,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7a5d25c822761339c3a8e05dfc623897"><td class="memItemLeft" align="right" valign="top"><a id="a7a5d25c822761339c3a8e05dfc623897"></a>
-Adafruit_I2CRegister *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a7a5d25c822761339c3a8e05dfc623897">Config1</a></td></tr>
-<tr class="memdesc:a7a5d25c822761339c3a8e05dfc623897"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for CONFIG_1. <br /></td></tr>
-<tr class="separator:a7a5d25c822761339c3a8e05dfc623897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41443cbb7657f880c214fab8bc1302ea"><td class="memItemLeft" align="right" valign="top"><a id="a41443cbb7657f880c214fab8bc1302ea"></a>
-Adafruit_I2CRegister *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a41443cbb7657f880c214fab8bc1302ea">Config2</a></td></tr>
-<tr class="memdesc:a41443cbb7657f880c214fab8bc1302ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for CONFIG_2. <br /></td></tr>
-<tr class="separator:a41443cbb7657f880c214fab8bc1302ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8ef6b5128d84c8b8ba1060e7fcfa74f"><td class="memItemLeft" align="right" valign="top"><a id="ae8ef6b5128d84c8b8ba1060e7fcfa74f"></a>
-Adafruit_I2CRegister *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#ae8ef6b5128d84c8b8ba1060e7fcfa74f">Config3</a></td></tr>
-<tr class="memdesc:ae8ef6b5128d84c8b8ba1060e7fcfa74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for CONFIG_3. <br /></td></tr>
-<tr class="separator:ae8ef6b5128d84c8b8ba1060e7fcfa74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00b9cbbd68fdd1742b001ffe571b8c45"><td class="memItemLeft" align="right" valign="top"><a id="a00b9cbbd68fdd1742b001ffe571b8c45"></a>
-Adafruit_I2CRegister *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a00b9cbbd68fdd1742b001ffe571b8c45">InterruptCfg</a></td></tr>
-<tr class="memdesc:a00b9cbbd68fdd1742b001ffe571b8c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for INTERRUPT_CFG. <br /></td></tr>
-<tr class="separator:a00b9cbbd68fdd1742b001ffe571b8c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aced1102d892320b64c388e4fc0b28db2"><td class="memItemLeft" align="right" valign="top"><a id="aced1102d892320b64c388e4fc0b28db2"></a>
-Adafruit_I2CRegister *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#aced1102d892320b64c388e4fc0b28db2">InterruptStatus</a></td></tr>
-<tr class="memdesc:aced1102d892320b64c388e4fc0b28db2"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for INTERRUPT_STATUS. <br /></td></tr>
-<tr class="separator:aced1102d892320b64c388e4fc0b28db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a250810fec93a649095c0598e366b336d"><td class="memItemLeft" align="right" valign="top"><a id="a250810fec93a649095c0598e366b336d"></a>
+Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a250810fec93a649095c0598e366b336d">Config1</a></td></tr>
+<tr class="memdesc:a250810fec93a649095c0598e366b336d"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for CONFIG_1. <br /></td></tr>
+<tr class="separator:a250810fec93a649095c0598e366b336d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c2f94038eb2c10a800947b24c0b4cc"><td class="memItemLeft" align="right" valign="top"><a id="a58c2f94038eb2c10a800947b24c0b4cc"></a>
+Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a58c2f94038eb2c10a800947b24c0b4cc">Config2</a></td></tr>
+<tr class="memdesc:a58c2f94038eb2c10a800947b24c0b4cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for CONFIG_2. <br /></td></tr>
+<tr class="separator:a58c2f94038eb2c10a800947b24c0b4cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ac09277fc774bb066d98b4d809e8a3b"><td class="memItemLeft" align="right" valign="top"><a id="a6ac09277fc774bb066d98b4d809e8a3b"></a>
+Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a6ac09277fc774bb066d98b4d809e8a3b">Config3</a></td></tr>
+<tr class="memdesc:a6ac09277fc774bb066d98b4d809e8a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for CONFIG_3. <br /></td></tr>
+<tr class="separator:a6ac09277fc774bb066d98b4d809e8a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d53085b1bd9612ee06e73f691b279fc"><td class="memItemLeft" align="right" valign="top"><a id="a0d53085b1bd9612ee06e73f691b279fc"></a>
+Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a0d53085b1bd9612ee06e73f691b279fc">InterruptCfg</a></td></tr>
+<tr class="memdesc:a0d53085b1bd9612ee06e73f691b279fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for INTERRUPT_CFG. <br /></td></tr>
+<tr class="separator:a0d53085b1bd9612ee06e73f691b279fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcbfb5b8b276f0219c494fc2a9479cc8"><td class="memItemLeft" align="right" valign="top"><a id="adcbfb5b8b276f0219c494fc2a9479cc8"></a>
+Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#adcbfb5b8b276f0219c494fc2a9479cc8">InterruptStatus</a></td></tr>
+<tr class="memdesc:adcbfb5b8b276f0219c494fc2a9479cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">BusIO Register for INTERRUPT_STATUS. <br /></td></tr>
+<tr class="separator:adcbfb5b8b276f0219c494fc2a9479cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that stores state and functions for interacting with LPS35HW Current and Power Sensor. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5d0de5d7579cf0c08615e8d1a0455f09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d0de5d7579cf0c08615e8d1a0455f09">&#9670;&nbsp;</a></span>begin()</h2>
+<a id="a4413f448333fb9bf0163f04c13b34230"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4413f448333fb9bf0163f04c13b34230">&#9670;&nbsp;</a></span>begin_I2C()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boolean Adafruit_LPS35HW::begin </td>
+          <td class="memname">boolean Adafruit_LPS35HW::begin_I2C </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>i2c_address</em> = <code><a class="el" href="_adafruit___l_p_s35_h_w_8h.html#ab123a68cb902f3f4440414465fc68772">LPS35HW_I2CADDR_DEFAULT</a></code>, </td>
@@ -191,6 +194,44 @@ Adafruit_I2CRegister *&#160;</td><td class="memItemRight" valign="bottom"><a cla
   <table class="params">
     <tr><td class="paramname">i2c_address</td><td>The I2C address to be used. </td></tr>
     <tr><td class="paramname">wire</td><td>The Wire object to be used for I2C connections. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if initialization was successful, otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="ae1ff4857bf4f57d5347bb7f27144a33d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1ff4857bf4f57d5347bb7f27144a33d">&#9670;&nbsp;</a></span>begin_SPI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean Adafruit_LPS35HW::begin_SPI </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>cs_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SPIClass *&#160;</td>
+          <td class="paramname"><em>theSPI</em> = <code>&amp;SPI</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets up the hardware and initializes SPI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cs_pin</td><td>The arduino pin # connected to chip select </td></tr>
+    <tr><td class="paramname">theSPI</td><td>The SPI object to be used for SPI connections. </td></tr>
   </table>
   </dd>
 </dl>
