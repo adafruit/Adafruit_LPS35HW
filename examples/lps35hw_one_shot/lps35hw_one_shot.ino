@@ -9,7 +9,7 @@ void setup() {
 
   Serial.println("Adafruit LPS35HW One shot mode Test");
 
-  if (!lps35hw.begin()) {
+  if (!lps35hw.begin_I2C()) {
     Serial.println("Couldn't find LPS35HW chip");
     while (1);
   }

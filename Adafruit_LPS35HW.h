@@ -20,7 +20,7 @@
 #include "Arduino.h"
 #include <Wire.h>
 #include <Adafruit_I2CDevice.h>
-#include <Adafruit_I2CRegister.h>
+#include <Adafruit_BusIO_Register.h>
 
 #define LPS35HW_I2CADDR_DEFAULT 0x5D ///< LPS35HW default i2c address
 #define LPS35HW_INTERRUPT_CFG 0x0B ///< Interrupt configuration register
@@ -70,7 +70,8 @@ typedef enum _data_rate {
 class Adafruit_LPS35HW {
 public:
   Adafruit_LPS35HW();
-  boolean begin(uint8_t i2c_addr=LPS35HW_I2CADDR_DEFAULT, TwoWire *wire = &Wire);
+  boolean begin_I2C(uint8_t i2c_addr=LPS35HW_I2CADDR_DEFAULT, TwoWire *wire = &Wire);
+  boolean begin_SPI(uint8_t cs_pin, SPIClass *theSPI=&SPI);
   void reset(void);
   float readTemperature(void);
   float readPressure(void);
@@ -87,14 +88,17 @@ public:
   void disableInterrupts(void);
   void enableLowPass(bool extra_low_bandwidth=false);
 
-  Adafruit_I2CRegister *Config1,  ///< BusIO Register for CONFIG_1
-                       *Config2,  ///< BusIO Register for CONFIG_2
-                       *Config3, ///< BusIO Register for CONFIG_3
-                       *InterruptCfg, ///< BusIO Register for INTERRUPT_CFG
-                       *InterruptStatus; ///< BusIO Register for INTERRUPT_STATUS
+  Adafruit_BusIO_Register *Config1,  ///< BusIO Register for CONFIG_1
+    *Config2,  ///< BusIO Register for CONFIG_2
+    *Config3, ///< BusIO Register for CONFIG_3
+    *InterruptCfg, ///< BusIO Register for INTERRUPT_CFG
+    *InterruptStatus; ///< BusIO Register for INTERRUPT_STATUS
 
 private:
+  bool _init(void);
+
   Adafruit_I2CDevice *i2c_dev;
+  Adafruit_SPIDevice *spi_dev;
 };
 
 #endif
