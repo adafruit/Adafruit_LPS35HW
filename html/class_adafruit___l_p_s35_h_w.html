@@ -82,8 +82,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4413f448333fb9bf0163f04c13b34230"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the hardware and initializes I2C.  <a href="#a4413f448333fb9bf0163f04c13b34230">More...</a><br /></td></tr>
 <tr class="separator:a4413f448333fb9bf0163f04c13b34230"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1ff4857bf4f57d5347bb7f27144a33d"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#ae1ff4857bf4f57d5347bb7f27144a33d">begin_SPI</a> (uint8_t cs_pin, SPIClass *theSPI=&amp;SPI)</td></tr>
-<tr class="memdesc:ae1ff4857bf4f57d5347bb7f27144a33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the hardware and initializes SPI.  <a href="#ae1ff4857bf4f57d5347bb7f27144a33d">More...</a><br /></td></tr>
+<tr class="memdesc:ae1ff4857bf4f57d5347bb7f27144a33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the hardware and initializes hardware SPI.  <a href="#ae1ff4857bf4f57d5347bb7f27144a33d">More...</a><br /></td></tr>
 <tr class="separator:ae1ff4857bf4f57d5347bb7f27144a33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b8011f0b921a4a64f17c428d3b81702"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a9b8011f0b921a4a64f17c428d3b81702">begin_SPI</a> (int8_t cs_pin, int8_t sck_pin, int8_t miso_pin, int8_t mosi_pin)</td></tr>
+<tr class="memdesc:a9b8011f0b921a4a64f17c428d3b81702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the hardware and initializes software SPI.  <a href="#a9b8011f0b921a4a64f17c428d3b81702">More...</a><br /></td></tr>
+<tr class="separator:a9b8011f0b921a4a64f17c428d3b81702"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c6c9cf9dd299a32fede788630b836b7"><td class="memItemLeft" align="right" valign="top"><a id="a2c6c9cf9dd299a32fede788630b836b7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a2c6c9cf9dd299a32fede788630b836b7">reset</a> (void)</td></tr>
 <tr class="memdesc:a2c6c9cf9dd299a32fede788630b836b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the hardware. All configuration registers are set to default values, the same as a power-on reset. <br /></td></tr>
@@ -126,9 +129,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:adafef8e51bed08c8f0a13c93f862dde0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#adafef8e51bed08c8f0a13c93f862dde0">lowThresholdExceeded</a> (void)</td></tr>
 <tr class="memdesc:adafef8e51bed08c8f0a13c93f862dde0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current state of the low pressure threshold interrupt.  <a href="#adafef8e51bed08c8f0a13c93f862dde0">More...</a><br /></td></tr>
 <tr class="separator:adafef8e51bed08c8f0a13c93f862dde0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32e0114eb5c705d10147ed25cb85728a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a32e0114eb5c705d10147ed25cb85728a">enableInterrupts</a> (bool open_drain=false)</td></tr>
-<tr class="memdesc:a32e0114eb5c705d10147ed25cb85728a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables pressure threshold interrupts. High and low thresholds need to be enabled individually with <code>enableLowThreshold</code> and <code>enableHighThreshold</code>.  <a href="#a32e0114eb5c705d10147ed25cb85728a">More...</a><br /></td></tr>
-<tr class="separator:a32e0114eb5c705d10147ed25cb85728a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45e27b9add5bc6a685c84ac6a2ef8adf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#a45e27b9add5bc6a685c84ac6a2ef8adf">enableInterrupts</a> (bool active_low=false, bool open_drain=false)</td></tr>
+<tr class="memdesc:a45e27b9add5bc6a685c84ac6a2ef8adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables pressure threshold interrupts. High and low thresholds need to be enabled individually with <code>enableLowThreshold</code> and <code>enableHighThreshold</code>.  <a href="#a45e27b9add5bc6a685c84ac6a2ef8adf">More...</a><br /></td></tr>
+<tr class="separator:a45e27b9add5bc6a685c84ac6a2ef8adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8e48b5df8b81e8fe69da513fdf543c2"><td class="memItemLeft" align="right" valign="top"><a id="aa8e48b5df8b81e8fe69da513fdf543c2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___l_p_s35_h_w.html#aa8e48b5df8b81e8fe69da513fdf543c2">disableInterrupts</a> (void)</td></tr>
 <tr class="memdesc:aa8e48b5df8b81e8fe69da513fdf543c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables pressure threshold interrupts. <br /></td></tr>
@@ -202,7 +205,7 @@ Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a 
 </div>
 </div>
 <a id="ae1ff4857bf4f57d5347bb7f27144a33d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1ff4857bf4f57d5347bb7f27144a33d">&#9670;&nbsp;</a></span>begin_SPI()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1ff4857bf4f57d5347bb7f27144a33d">&#9670;&nbsp;</a></span>begin_SPI() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -227,11 +230,63 @@ Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a 
       </table>
 </div><div class="memdoc">
 
-<p>Sets up the hardware and initializes SPI. </p>
+<p>Sets up the hardware and initializes hardware SPI. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cs_pin</td><td>The arduino pin # connected to chip select </td></tr>
     <tr><td class="paramname">theSPI</td><td>The SPI object to be used for SPI connections. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if initialization was successful, otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="a9b8011f0b921a4a64f17c428d3b81702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b8011f0b921a4a64f17c428d3b81702">&#9670;&nbsp;</a></span>begin_SPI() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean Adafruit_LPS35HW::begin_SPI </td>
+          <td>(</td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>cs_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>sck_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>miso_pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>mosi_pin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets up the hardware and initializes software SPI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cs_pin</td><td>The arduino pin # connected to chip select </td></tr>
+    <tr><td class="paramname">sck_pin</td><td>The arduino pin # connected to SPI clock </td></tr>
+    <tr><td class="paramname">miso_pin</td><td>The arduino pin # connected to SPI MISO </td></tr>
+    <tr><td class="paramname">mosi_pin</td><td>The arduino pin # connected to SPI MOSI </td></tr>
   </table>
   </dd>
 </dl>
@@ -375,8 +430,8 @@ Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
-<a id="a32e0114eb5c705d10147ed25cb85728a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32e0114eb5c705d10147ed25cb85728a">&#9670;&nbsp;</a></span>enableInterrupts()</h2>
+<a id="a45e27b9add5bc6a685c84ac6a2ef8adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45e27b9add5bc6a685c84ac6a2ef8adf">&#9670;&nbsp;</a></span>enableInterrupts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -385,8 +440,18 @@ Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a 
           <td class="memname">void Adafruit_LPS35HW::enableInterrupts </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>open_drain</em> = <code>false</code></td><td>)</td>
+          <td class="paramname"><em>active_low</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>open_drain</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -394,6 +459,7 @@ Adafruit_BusIO_Register *&#160;</td><td class="memItemRight" valign="bottom"><a 
 <p>Enables pressure threshold interrupts. High and low thresholds need to be enabled individually with <code>enableLowThreshold</code> and <code>enableHighThreshold</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">active_low</td><td>Polarity of interrupt pin, true for active low. </td></tr>
     <tr><td class="paramname">open_drain</td><td>Set to <code>true</code> to have the INT pin be open drain when active. </td></tr>
   </table>
   </dd>
