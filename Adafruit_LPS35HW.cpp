@@ -61,7 +61,7 @@ boolean Adafruit_LPS35HW::begin_I2C(uint8_t i2c_address, TwoWire *wire) {
 }
 
 /*!
- *    @brief  Sets up the hardware and initializes SPI
+ *    @brief  Sets up the hardware and initializes hardware SPI
  *    @param  cs_pin The arduino pin # connected to chip select
  *    @param  theSPI The SPI object to be used for SPI connections.
  *    @return True if initialization was successful, otherwise false.
@@ -70,9 +70,31 @@ boolean Adafruit_LPS35HW::begin_SPI(uint8_t cs_pin, SPIClass *theSPI) {
   i2c_dev = NULL;
   spi_dev = new Adafruit_SPIDevice(cs_pin, 
 				   1000000,   // frequency
-				   MSBFIRST,  // bit order
+				   SPI_BITORDER_MSBFIRST,  // bit order
 				   SPI_MODE0, // data mode
 				   theSPI);
+
+  if (!spi_dev->begin()) {
+    return false;
+  }
+
+  return _init();
+}
+
+/*!
+ *    @brief  Sets up the hardware and initializes software SPI
+ *    @param  cs_pin The arduino pin # connected to chip select
+ *    @param  sck_pin The arduino pin # connected to SPI clock
+ *    @param  miso_pin The arduino pin # connected to SPI MISO
+ *    @param  mosi_pin The arduino pin # connected to SPI MOSI
+ *    @return True if initialization was successful, otherwise false.
+ */
+boolean Adafruit_LPS35HW::begin_SPI(int8_t cs_pin, int8_t sck_pin, int8_t miso_pin, int8_t mosi_pin) {
+  i2c_dev = NULL;
+  spi_dev = new Adafruit_SPIDevice(cs_pin, sck_pin, miso_pin, mosi_pin,
+				   1000000,   // frequency
+				   SPI_BITORDER_MSBFIRST,  // bit order
+				   SPI_MODE0); // data mode
 
   if (!spi_dev->begin()) {
     return false;
@@ -227,15 +249,15 @@ void Adafruit_LPS35HW::enableLowThreshold(void) {
     @brief Enables pressure threshold interrupts. High and low thresholds
           need to be enabled individually with `enableLowThreshold` and
           `enableHighThreshold`.
+    @param active_low Polarity of interrupt pin, true for active low.
     @param open_drain
           Set to `true` to have the INT pin be open drain when active.
 */
 /**************************************************************************/
-void Adafruit_LPS35HW::enableInterrupts(bool open_drain){
-  if (open_drain){
-    Adafruit_BusIO_RegisterBits pin_mode = Adafruit_BusIO_RegisterBits(Config3, 2, 6);
-    pin_mode.write(0x3);
-  }
+void Adafruit_LPS35HW::enableInterrupts(bool active_low, bool open_drain){
+  Adafruit_BusIO_RegisterBits pin_mode = Adafruit_BusIO_RegisterBits(Config3, 2, 6);
+  pin_mode.write((active_low << 1) | open_drain);
+
   Adafruit_BusIO_RegisterBits latch_enabled = Adafruit_BusIO_RegisterBits(InterruptCfg, 2, 2);
   latch_enabled.write(0x3);
 }

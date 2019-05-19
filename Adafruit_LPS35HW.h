@@ -72,6 +72,7 @@ public:
   Adafruit_LPS35HW();
   boolean begin_I2C(uint8_t i2c_addr=LPS35HW_I2CADDR_DEFAULT, TwoWire *wire = &Wire);
   boolean begin_SPI(uint8_t cs_pin, SPIClass *theSPI=&SPI);
+  boolean begin_SPI(int8_t cs_pin, int8_t sck_pin, int8_t miso_pin, int8_t mosi_pin);
   void reset(void);
   float readTemperature(void);
   float readPressure(void);
@@ -84,7 +85,7 @@ public:
   void enableLowThreshold(void);
   bool highThresholdExceeded(void);
   bool lowThresholdExceeded(void);
-  void enableInterrupts(bool open_drain=false);
+  void enableInterrupts(bool active_low=false, bool open_drain=false);
   void disableInterrupts(void);
   void enableLowPass(bool extra_low_bandwidth=false);
 
