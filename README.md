@@ -1,12 +1,14 @@
 Adafruit_LPS35HW [![Build Status](https://travis-ci.com/adafruit/Adafruit_LPS35HW.svg?branch=master)](https://travis-ci.com/adafruit/Adafruit_LPS35HW)
 ================
 
-<a href="https://www.adafruit.com/products"><img src="assets/board.jpg?raw=true" width="500px"></a>
+<a href="https://www.adafruit.com/product/4258"><img src="assets/lps35.jpg?raw=true" width="500px"></a>
+<a href="https://www.adafruit.com/product/4414"><img src="assets/lps33.jpg?raw=true" width="500px"></a>
 
 This is the Adafruit LPS35HW Water resistant barometric pressure sensor library
 
-Tested and works great with the Adafruit LPS35HW Breakout Board 
-* http://www.adafruit.com/products
+Tested and works great with the Adafruit LPS35HW and LPS33HW Breakout Boards
+* https://www.adafruit.com/product/4258
+* https://www.adafruit.com/product/4414
 
 This chip uses I2C to communicate, 2 pins are required to interface
 
