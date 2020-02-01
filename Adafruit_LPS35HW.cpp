@@ -5,7 +5,8 @@
  *
  *  @section intro_sec Introduction
  *
- * 	I2C Driver for the LPS35HW I2C water resistant barometric pressure sensor
+ * 	I2C Driver for the LPS35HW I2C water resistant barometric pressure
+ * sensor
  *
  * 	This is a library for the Adafruit LPS35HW breakout:
  * 	http://www.adafruit.com/products
@@ -68,11 +69,11 @@ boolean Adafruit_LPS35HW::begin_I2C(uint8_t i2c_address, TwoWire *wire) {
  */
 boolean Adafruit_LPS35HW::begin_SPI(uint8_t cs_pin, SPIClass *theSPI) {
   i2c_dev = NULL;
-  spi_dev = new Adafruit_SPIDevice(cs_pin, 
-				   1000000,   // frequency
-				   SPI_BITORDER_MSBFIRST,  // bit order
-				   SPI_MODE0, // data mode
-				   theSPI);
+  spi_dev = new Adafruit_SPIDevice(cs_pin,
+                                   1000000,               // frequency
+                                   SPI_BITORDER_MSBFIRST, // bit order
+                                   SPI_MODE0,             // data mode
+                                   theSPI);
 
   if (!spi_dev->begin()) {
     return false;
@@ -89,12 +90,13 @@ boolean Adafruit_LPS35HW::begin_SPI(uint8_t cs_pin, SPIClass *theSPI) {
  *    @param  mosi_pin The arduino pin # connected to SPI MOSI
  *    @return True if initialization was successful, otherwise false.
  */
-boolean Adafruit_LPS35HW::begin_SPI(int8_t cs_pin, int8_t sck_pin, int8_t miso_pin, int8_t mosi_pin) {
+boolean Adafruit_LPS35HW::begin_SPI(int8_t cs_pin, int8_t sck_pin,
+                                    int8_t miso_pin, int8_t mosi_pin) {
   i2c_dev = NULL;
   spi_dev = new Adafruit_SPIDevice(cs_pin, sck_pin, miso_pin, mosi_pin,
-				   1000000,   // frequency
-				   SPI_BITORDER_MSBFIRST,  // bit order
-				   SPI_MODE0); // data mode
+                                   1000000,               // frequency
+                                   SPI_BITORDER_MSBFIRST, // bit order
+                                   SPI_MODE0);            // data mode
 
   if (!spi_dev->begin()) {
     return false;
@@ -103,28 +105,32 @@ boolean Adafruit_LPS35HW::begin_SPI(int8_t cs_pin, int8_t sck_pin, int8_t miso_p
   return _init();
 }
 
-
 boolean Adafruit_LPS35HW::_init(void) {
-  Adafruit_BusIO_Register chip_id = 
-    Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_WHO_AM_I, 1);
+  Adafruit_BusIO_Register chip_id = Adafruit_BusIO_Register(
+      i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_WHO_AM_I, 1);
 
   // make sure we're talking to the right chip
   if (chip_id.read() != 0xB1) {
     return false;
   }
 
-  Config1 = new Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_CTRL_REG1, 1);
-  Config2 = new Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_CTRL_REG2, 1);
-  Config3 = new Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_CTRL_REG3, 1);
-  InterruptCfg = new Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_INTERRUPT_CFG, 1);
-  InterruptStatus = new Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_INT_SOURCE, 1);
+  Config1 = new Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD,
+                                        LPS35HW_CTRL_REG1, 1);
+  Config2 = new Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD,
+                                        LPS35HW_CTRL_REG2, 1);
+  Config3 = new Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD,
+                                        LPS35HW_CTRL_REG3, 1);
+  InterruptCfg = new Adafruit_BusIO_Register(
+      i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_INTERRUPT_CFG, 1);
+  InterruptStatus = new Adafruit_BusIO_Register(
+      i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_INT_SOURCE, 1);
 
   reset();
 
   setDataRate(LPS35HW_RATE_10_HZ); // default in continuous at 10 hz
   // setup block reads
   Adafruit_BusIO_RegisterBits block_reads =
-    Adafruit_BusIO_RegisterBits(Config1, 1, 1);
+      Adafruit_BusIO_RegisterBits(Config1, 1, 1);
   block_reads.write(0x1);
 
   return true;
@@ -136,11 +142,11 @@ boolean Adafruit_LPS35HW::_init(void) {
             default values, the same as a power-on reset.
 */
 /**************************************************************************/
-void Adafruit_LPS35HW::reset(void){
+void Adafruit_LPS35HW::reset(void) {
   Adafruit_BusIO_RegisterBits reset =
-    Adafruit_BusIO_RegisterBits(Config2, 1, 2);
+      Adafruit_BusIO_RegisterBits(Config2, 1, 2);
   reset.write(1);
-  while(reset.read() == true){
+  while (reset.read() == true) {
     delay(1);
   }
 }
@@ -151,8 +157,8 @@ void Adafruit_LPS35HW::reset(void){
 */
 /**************************************************************************/
 float Adafruit_LPS35HW::readTemperature(void) {
-  Adafruit_BusIO_Register temp =
-    Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_TEMP_OUT_L, 2);
+  Adafruit_BusIO_Register temp = Adafruit_BusIO_Register(
+      i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_TEMP_OUT_L, 2);
   return (int16_t)temp.read() / 100.0;
 }
 /**************************************************************************/
@@ -162,13 +168,13 @@ float Adafruit_LPS35HW::readTemperature(void) {
 */
 /**************************************************************************/
 float Adafruit_LPS35HW::readPressure(void) {
-  Adafruit_BusIO_Register pressure =
-    Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_PRESS_OUT_XL, 3);
-    int32_t raw_pressure = pressure.read();
-    // perform sign extension for 24 bit number if needed
-    if (raw_pressure & 0x800000){
-      raw_pressure = (0xff000000 | raw_pressure);
-    }
+  Adafruit_BusIO_Register pressure = Adafruit_BusIO_Register(
+      i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_PRESS_OUT_XL, 3);
+  int32_t raw_pressure = pressure.read();
+  // perform sign extension for 24 bit number if needed
+  if (raw_pressure & 0x800000) {
+    raw_pressure = (0xff000000 | raw_pressure);
+  }
 
   return (raw_pressure / 4096.0);
 }
@@ -180,9 +186,11 @@ float Adafruit_LPS35HW::readPressure(void) {
 /**************************************************************************/
 void Adafruit_LPS35HW::takeMeasurement(void) {
   Adafruit_BusIO_RegisterBits one_shot =
-    Adafruit_BusIO_RegisterBits(Config2, 1, 0);
+      Adafruit_BusIO_RegisterBits(Config2, 1, 0);
   one_shot.write(1);
-  while(one_shot.read() == true){ delay(1);};
+  while (one_shot.read() == true) {
+    delay(1);
+  };
 }
 
 /**************************************************************************/
@@ -194,9 +202,11 @@ void Adafruit_LPS35HW::takeMeasurement(void) {
 /**************************************************************************/
 void Adafruit_LPS35HW::zeroPressure(void) {
   Adafruit_BusIO_RegisterBits zero_pressure =
-    Adafruit_BusIO_RegisterBits(InterruptCfg, 1, 5);
+      Adafruit_BusIO_RegisterBits(InterruptCfg, 1, 5);
   zero_pressure.write(1);
-  while(zero_pressure.read() == true){ delay(1);};
+  while (zero_pressure.read() == true) {
+    delay(1);
+  };
 }
 
 /**************************************************************************/
@@ -207,19 +217,21 @@ void Adafruit_LPS35HW::zeroPressure(void) {
 /**************************************************************************/
 void Adafruit_LPS35HW::resetPressure(void) {
   Adafruit_BusIO_RegisterBits pressure_reset =
-    Adafruit_BusIO_RegisterBits(InterruptCfg, 1, 4);
+      Adafruit_BusIO_RegisterBits(InterruptCfg, 1, 4);
   pressure_reset.write(1);
 }
 
 /**************************************************************************/
 /*!
-    @brief Sets the pressure threshold used by the high and low pressure thresholds
+    @brief Sets the pressure threshold used by the high and low pressure
+   thresholds
     @param threshold_pressure
             The threshold pressure in hPa, measured from zero
 */
 /**************************************************************************/
 void Adafruit_LPS35HW::setThresholdPressure(float threshold_pressure) {
-  Adafruit_BusIO_Register threshold = Adafruit_BusIO_Register(i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_THS_P_L, 2);
+  Adafruit_BusIO_Register threshold = Adafruit_BusIO_Register(
+      i2c_dev, spi_dev, ADDRBIT8_HIGH_TOREAD, LPS35HW_THS_P_L, 2);
   threshold.write(threshold_pressure * 16);
 }
 /**************************************************************************/
@@ -228,9 +240,11 @@ void Adafruit_LPS35HW::setThresholdPressure(float threshold_pressure) {
 */
 /**************************************************************************/
 void Adafruit_LPS35HW::enableHighThreshold(void) {
-  Adafruit_BusIO_RegisterBits high_thresh = Adafruit_BusIO_RegisterBits(InterruptCfg, 1, 0);
+  Adafruit_BusIO_RegisterBits high_thresh =
+      Adafruit_BusIO_RegisterBits(InterruptCfg, 1, 0);
   high_thresh.write(0x1);
-  Adafruit_BusIO_RegisterBits high_int_pin = Adafruit_BusIO_RegisterBits(Config3, 1, 0);
+  Adafruit_BusIO_RegisterBits high_int_pin =
+      Adafruit_BusIO_RegisterBits(Config3, 1, 0);
   high_int_pin.write(0x1);
 }
 /**************************************************************************/
@@ -239,9 +253,11 @@ void Adafruit_LPS35HW::enableHighThreshold(void) {
 */
 /**************************************************************************/
 void Adafruit_LPS35HW::enableLowThreshold(void) {
-  Adafruit_BusIO_RegisterBits low_thresh = Adafruit_BusIO_RegisterBits(InterruptCfg, 1, 1);
+  Adafruit_BusIO_RegisterBits low_thresh =
+      Adafruit_BusIO_RegisterBits(InterruptCfg, 1, 1);
   low_thresh.write(0x1);
-  Adafruit_BusIO_RegisterBits low_int_pin = Adafruit_BusIO_RegisterBits(Config3, 1, 1);
+  Adafruit_BusIO_RegisterBits low_int_pin =
+      Adafruit_BusIO_RegisterBits(Config3, 1, 1);
   low_int_pin.write(0x1);
 }
 /**************************************************************************/
@@ -254,11 +270,13 @@ void Adafruit_LPS35HW::enableLowThreshold(void) {
           Set to `true` to have the INT pin be open drain when active.
 */
 /**************************************************************************/
-void Adafruit_LPS35HW::enableInterrupts(bool active_low, bool open_drain){
-  Adafruit_BusIO_RegisterBits pin_mode = Adafruit_BusIO_RegisterBits(Config3, 2, 6);
+void Adafruit_LPS35HW::enableInterrupts(bool active_low, bool open_drain) {
+  Adafruit_BusIO_RegisterBits pin_mode =
+      Adafruit_BusIO_RegisterBits(Config3, 2, 6);
   pin_mode.write((active_low << 1) | open_drain);
 
-  Adafruit_BusIO_RegisterBits latch_enabled = Adafruit_BusIO_RegisterBits(InterruptCfg, 2, 2);
+  Adafruit_BusIO_RegisterBits latch_enabled =
+      Adafruit_BusIO_RegisterBits(InterruptCfg, 2, 2);
   latch_enabled.write(0x3);
 }
 /**************************************************************************/
@@ -266,10 +284,10 @@ void Adafruit_LPS35HW::enableInterrupts(bool active_low, bool open_drain){
     @brief Disables pressure threshold interrupts.
 */
 /**************************************************************************/
-void Adafruit_LPS35HW::disableInterrupts(void){
-  Adafruit_BusIO_RegisterBits enabled = Adafruit_BusIO_RegisterBits(InterruptCfg, 2, 2);
+void Adafruit_LPS35HW::disableInterrupts(void) {
+  Adafruit_BusIO_RegisterBits enabled =
+      Adafruit_BusIO_RegisterBits(InterruptCfg, 2, 2);
   enabled.write(0x0);
-
 }
 /**************************************************************************/
 /*!
@@ -278,9 +296,9 @@ void Adafruit_LPS35HW::disableInterrupts(void){
             Set to `true` to scale the bandwidth to ODR/20
 */
 /**************************************************************************/
-void Adafruit_LPS35HW::enableLowPass(bool extra_low_bandwidth){
+void Adafruit_LPS35HW::enableLowPass(bool extra_low_bandwidth) {
   Adafruit_BusIO_RegisterBits filter_config =
-    Adafruit_BusIO_RegisterBits(Config1, 2, 2);
+      Adafruit_BusIO_RegisterBits(Config1, 2, 2);
   filter_config.write(0x2 | (extra_low_bandwidth == true));
 }
 
@@ -313,6 +331,6 @@ bool Adafruit_LPS35HW::lowThresholdExceeded(void) {
 /**************************************************************************/
 void Adafruit_LPS35HW::setDataRate(LPS35HW_DataRate new_rate) {
   Adafruit_BusIO_RegisterBits data_rate =
-    Adafruit_BusIO_RegisterBits(Config1, 3, 4);
+      Adafruit_BusIO_RegisterBits(Config1, 3, 4);
   data_rate.write(new_rate);
 }
