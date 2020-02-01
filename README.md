@@ -1,5 +1,5 @@
-Adafruit_LPS35HW [![Build Status](https://travis-ci.com/adafruit/Adafruit_LPS35HW.svg?branch=master)](https://travis-ci.com/adafruit/Adafruit_LPS35HW)
-================
+# Adafruit LPS35HW [![Build Status](https://github.com/adafruit/Adafruit_LPS35HW/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_LPS35HW/actions)
+
 
 <a href="https://www.adafruit.com/product/4258"><img src="assets/lps35.jpg?raw=true" width="272px"></a><a href="https://www.adafruit.com/product/4414"><img src="assets/lps33.jpg?raw=true" width="250px"></a>
 
