@@ -1,4 +1,4 @@
-# Adafruit LPS35HW [![Build Status](https://github.com/adafruit/Adafruit_LPS35HW/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_LPS35HW/actions)
+# Adafruit LPS35HW [![Build Status](https://github.com/adafruit/Adafruit_LPS35HW/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_LPS35HW/actions)[![Documentation](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](http://adafruit.github.io/Adafruit_LPS35HW/html/index.html)
 
 
 <a href="https://www.adafruit.com/product/4258"><img src="assets/lps35.jpg?raw=true" width="272px"></a><a href="https://www.adafruit.com/product/4414"><img src="assets/lps33.jpg?raw=true" width="250px"></a>
