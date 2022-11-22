@@ -23,6 +23,7 @@
 #include <Wire.h>
 
 #define LPS35HW_I2CADDR_DEFAULT 0x5D ///< LPS35HW default i2c address
+#define LPS35HW_I2CADDR_ALT     0x5C ///< LPS35HW alternate i2c address
 #define LPS35HW_INTERRUPT_CFG 0x0B   ///< Interrupt configuration register
 #define LPS35HW_THS_P_L 0x0C         ///< Threshold pressure low byte
 #define LPS35HW_THS_P_H 0x0D         ///< Threshold pressure high byte
